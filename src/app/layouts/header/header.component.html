@@ -1,0 +1,73 @@
+<div class="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-sm shadow-md z-50">
+  <nav class="container mx-auto px-6 py-4 flex items-center justify-between">
+    <!-- Logo and Church Name -->
+    <div class="flex items-center space-x-4">
+      <img src="assets/logo/church.jpg" alt="Church Logo" class="h-12 w-12">
+      <span class="text-2xl font-semibold text-gray-800  border-gray-600 pb-1">{{churchName}}</span>
+    </div>
+
+    <!-- Desktop Navigation with Language Toggle -->
+    <div class="hidden md:flex items-center space-x-8">
+      <ng-container *ngTemplateOutlet="navigationLinks"></ng-container>
+      
+      <!-- Language Toggle Button -->
+      <button (click)="toggleLanguage()" 
+              class="ml-4 px-4 py-2 rounded-full bg-indigo-500 text-white hover:bg-indigo-600 
+                     transition-colors duration-200 flex items-center space-x-2 text-sm">
+        <span>{{ getLanguageText() }}</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm0-2a6 6 0 100-12 6 6 0 000 12zm-1-5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clip-rule="evenodd"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <div class="md:hidden flex items-center space-x-4">
+      <!-- Language Toggle Button Mobile -->
+      <button (click)="toggleLanguage()" 
+              class="px-3 py-1.5 rounded-full bg-indigo-500 text-white text-sm hover:bg-indigo-600 
+                     transition-colors duration-200">
+        {{ getLanguageText() }}
+      </button>
+      
+      <!-- Existing Mobile Menu Button -->
+      <button class="p-2" (click)="toggleMenu()">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-16 6h16" />
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Navigation -->
+  <div class="md:hidden" [ngClass]="{'hidden': !isMenuOpen}">
+    <div class="px-6 py-4 space-y-4 bg-white/90 backdrop-blur-sm">
+      <ng-container *ngTemplateOutlet="navigationLinks"></ng-container>
+    </div>
+  </div>
+</div>
+
+<!-- Navigation Links Template -->
+<ng-template #navigationLinks>
+  <a routerLink="/home" class="text-gray-600 hover:text-gray-900 py-2">
+    {{ 'nav.home' | translate }}
+  </a>
+  <a routerLink="/home/about-us" class="text-gray-600 hover:text-gray-900 py-2">
+    {{ 'nav.about' | translate }}
+  </a>
+  <a routerLink="/home/projects" class="text-gray-600 hover:text-gray-900 py-2">
+    {{ 'nav.projects' | translate }}
+  </a>
+  <a routerLink="/home/gallery" class="text-gray-600 hover:text-gray-900 py-2">
+    {{ 'nav.gallery' | translate }}
+  </a>
+  <a routerLink="/home/donate" class="text-gray-600 hover:text-gray-900 py-2">
+    {{ 'nav.donate' | translate }}
+  </a>
+  <a routerLink="/home/contact-us" class="text-gray-600 hover:text-gray-900 py-2">
+    {{ 'nav.contact' | translate }}
+  </a>
+</ng-template>
+
+<!-- Spacer -->
+<div class="h-20"></div>

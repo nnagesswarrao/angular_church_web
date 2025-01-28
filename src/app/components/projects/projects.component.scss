@@ -1,0 +1,56 @@
+.projects-section {
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(0,0,0,0.2) 25%, transparent 25%),
+                linear-gradient(-45deg, rgba(0,0,0,0.2) 25%, transparent 25%);
+    background-size: 3rem 3rem;
+    opacity: 0.1;
+  }
+}
+
+.project-card {
+  backdrop-filter: blur(8px);
+  background: rgba(31, 41, 55, 0.95);
+  transform: translateY(0);
+  transition: all 0.3s ease-in-out;
+  
+  &:hover {
+    transform: translateY(-5px);
+    background: rgba(31, 41, 55, 1);
+    
+    img {
+      transform: scale(1.05);
+      filter: brightness(1.1);
+    }
+  }
+  
+  img {
+    transition: all 0.3s ease-in-out;
+    filter: brightness(0.9);
+  }
+
+  @for $i from 1 through 12 {
+    &:nth-child(#{$i}) {
+      animation: fadeInUp 0.5s ease-out forwards;
+      animation-delay: #{$i * 0.1}s;
+    }
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

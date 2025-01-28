@@ -1,0 +1,73 @@
+<section class="py-16 bg-gradient-to-br from-gray-950 via-black to-gray-900">
+  <div class="container mx-auto px-4">
+    <!-- Section Header -->
+    <div class="text-center mb-12">
+      <h2 class="text-4xl font-bold text-white mb-4">Connect With Us</h2>
+      <div class="w-24 h-1 bg-gold mx-auto rounded-full"></div>
+    </div>
+
+    <!-- Social Media Grid -->
+    <div class="flex flex-col lg:flex-row gap-8">
+      <!-- YouTube Videos Column -->
+      <div class="w-full lg:w-1/2">
+        <div class="bg-gray-900/50 backdrop-blur-sm p-6 rounded-2xl shadow-xl border border-gray-800/30">
+          <h3 class="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
+            <svg class="w-8 h-8 text-red-600" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+            </svg>
+            Latest Videos
+          </h3>
+          <div class="h-[600px] overflow-y-auto space-y-4 pr-4 custom-scrollbar">
+            <div *ngFor="let video of youtubeVideos" 
+                 class="bg-black/40 rounded-lg overflow-hidden transform hover:scale-[1.02] transition-all duration-300">
+              <div class="aspect-video">
+                <iframe 
+                  class="w-full h-full"
+                  [src]="video.embedUrl"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen>
+                </iframe>
+              </div>
+              <div class="p-4">
+                <h4 class="text-white font-medium">{{video.title}}</h4>
+                <p class="text-gray-400 text-sm mt-2">{{video.description}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Facebook Posts Column -->
+      <div class="w-full lg:w-1/2">
+        <div class="bg-gray-900/50 backdrop-blur-sm p-6 rounded-2xl shadow-xl border border-gray-800/30">
+          <h3 class="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
+            <svg class="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+            Facebook Updates
+          </h3>
+          <div class="h-[600px] overflow-y-auto space-y-4 pr-4 custom-scrollbar">
+            <div *ngFor="let post of facebookPosts" 
+                 class="bg-black/40 p-6 rounded-lg border-l-4 border-blue-600 transform hover:scale-[1.02] transition-all duration-300">
+              <div class="flex items-start space-x-4">
+                <img [src]="post.authorImage" [alt]="post.author" 
+                     class="w-12 h-12 rounded-full ring-2 ring-blue-600/30">
+                <div>
+                  <h4 class="text-white font-medium">{{post.author}}</h4>
+                  <p class="text-gray-400 text-sm">{{post.date}}</p>
+                </div>
+              </div>
+              <p class="text-gray-300 mt-4">{{post.content}}</p>
+              <div *ngIf="post.image" class="mt-4">
+                <img [src]="post.image" [alt]="post.imageAlt" 
+                     class="w-full rounded-lg">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

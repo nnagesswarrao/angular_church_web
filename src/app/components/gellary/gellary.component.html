@@ -1,0 +1,50 @@
+<div class="container mx-auto px-4 py-8">
+    <!-- Tabs -->
+    <div class="flex space-x-4 mb-8">
+        <button [ngClass]="{'bg-blue-600 text-white': activeTab === 'images', 'bg-gray-200': activeTab !== 'images'}"
+            class="px-6 py-2 rounded-lg transition duration-300" (click)="setActiveTab('images')">
+            Images
+        </button>
+        <button [ngClass]="{'bg-blue-600 text-white': activeTab === 'videos', 'bg-gray-200': activeTab !== 'videos'}"
+            class="px-6 py-2 rounded-lg transition duration-300" (click)="setActiveTab('videos')">
+            Videos
+        </button>
+    </div>
+
+    <!-- Images Grid -->
+    <div *ngIf="activeTab === 'images'" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div *ngFor="let item of images" class="group relative overflow-hidden rounded-lg shadow-lg">
+            <img [src]="item.url" alt="Gallery image"
+                class="w-full h-64 object-cover transition duration-300 group-hover:scale-110">
+            <div
+                class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-4 transform translate-y-full group-hover:translate-y-0 transition duration-300">
+                <p class="text-sm">{{ item.date | date:'medium' }}</p>
+                <p class="font-semibold">{{ item.place }}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Videos Grid -->
+    <div *ngIf="activeTab === 'videos'" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div *ngFor="let item of videos" class="overflow-hidden rounded-lg shadow-lg">
+            <!-- <iframe 
+          [src]="item.url"
+          class="w-full aspect-video"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe> -->
+
+            <iframe class="absolute top-0 left-0 w-full h-full rounded-lg"
+                src="https://www.youtube.com/embed/2mgUPt2KI08?si=F2VqFHWc-zf2evOJ" title="YouTube video player"
+                class="w-full aspect-video" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+            <div class="p-4 bg-white">
+                <p class="text-sm text-gray-600">{{ item.date | date:'medium' }}</p>
+                <p class="font-semibold">{{ item.place }}</p>
+            </div>
+        </div>
+    </div>
+</div>

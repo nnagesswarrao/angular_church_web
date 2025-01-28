@@ -1,0 +1,30 @@
+<div class="relative h-[500px] overflow-hidden rounded-lg shadow-xl" *ngIf="images?.length">
+    <div class="absolute inset-0 flex transition-transform duration-500 ease-in-out" [style.transform]="'translateX(-' + (currentIndex * 100) + '%)'">
+        <div *ngFor="let image of images" class="min-w-full h-full flex-shrink-0">
+            <img [src]="image.src" class="object-cover w-full h-full" alt="Church image">
+        </div>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <button (click)="previousImage()"
+        class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+    </button>
+
+    <button (click)="nextImage()"
+        class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+    </button>
+
+    <!-- Dots Indicator -->
+    <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
+        <span *ngFor="let image of images; let i = index" (click)="currentIndex = i"
+            [ngClass]="{'bg-white': i === currentIndex, 'bg-white/50': i !== currentIndex}"
+            class="w-2 h-2 rounded-full cursor-pointer">
+        </span>
+    </div>
+</div>
