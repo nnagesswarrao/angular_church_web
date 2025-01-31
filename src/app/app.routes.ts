@@ -7,6 +7,7 @@ import { ContactUsComponent } from './components/contact-us/contact-us.component
 import { GalleryComponent } from './components/gellary/gellary.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { DonateComponent } from './components/donate/donate.component';
+import { SettingsComponent } from './components/settings/settings.component';
 
 export const routes: Routes = [
     {
@@ -42,6 +43,11 @@ export const routes: Routes = [
                 path: 'donate',
                 component: DonateComponent
             },
+            {
+                path: 'settings',
+                component: SettingsComponent
+            },
+            
             
 
         ]

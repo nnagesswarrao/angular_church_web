@@ -3,7 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 .custom-scrollbar {
     scrollbar-width: thin;
     scrollbar-color: rgba(251, 191, 36, 0.5) rgba(0, 0, 0, 0.2);
@@ -26,4 +25,41 @@
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     background-color: rgba(251, 191, 36, 0.7);
   }
+
+// Theme Variables
+:root {
+  --primary-color: #4F46E5;
   
+  &[data-font-size='small'] {
+    font-size: 14px;
+  }
+  
+  &[data-font-size='medium'] {
+    font-size: 16px;
+  }
+  
+  &[data-font-size='large'] {
+    font-size: 18px;
+  }
+}
+
+// Dark Mode Styles
+.dark {
+  @apply bg-gray-900 text-white;
+  
+  .bg-white {
+    @apply bg-gray-800;
+  }
+  
+  .text-gray-600 {
+    @apply text-gray-300;
+  }
+  
+  .text-gray-900 {
+    @apply text-white;
+  }
+  
+  .border-gray-200 {
+    @apply border-gray-700;
+  }
+}

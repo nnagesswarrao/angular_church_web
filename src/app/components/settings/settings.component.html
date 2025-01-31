@@ -1,1 +1,51 @@
-<p>settings works!</p>
+<div class="space-y-6 p-4">
+  <!-- Language Settings -->
+  <div class="space-y-2">
+    <h3 class="text-lg font-medium text-gray-900">{{ 'settings.language' | translate }}</h3>
+    <button (click)="toggleLanguage()" 
+            class="w-full flex items-center justify-between px-4 py-2 rounded-lg border border-gray-200 hover:bg-gray-50">
+      <span>{{ getLanguageText() }}</span>
+      <span class="material-icons">translate</span>
+    </button>
+  </div>
+
+  <!-- Theme Settings -->
+  <div class="space-y-2">
+    <h3 class="text-lg font-medium text-gray-900">{{ 'settings.appearance' | translate }}</h3>
+    
+    <!-- Dark Mode Toggle -->
+    <button (click)="toggleDarkMode()" 
+            class="w-full flex items-center justify-between px-4 py-2 rounded-lg border border-gray-200 hover:bg-gray-50">
+      <span>{{ (isDarkMode$ | async) ? 'Light Mode' : 'Dark Mode' }}</span>
+      <span class="material-icons">{{ (isDarkMode$ | async) ? 'light_mode' : 'dark_mode' }}</span>
+    </button>
+
+    <!-- Color Themes -->
+    <div class="mt-4">
+      <h4 class="text-sm font-medium text-gray-700 mb-2">Theme Color</h4>
+      <div class="flex space-x-2">
+        <button *ngFor="let theme of colorThemes"
+                [style.backgroundColor]="theme.value"
+                (click)="setThemeColor(theme.value)"
+                class="w-8 h-8 rounded-full border-2"
+                [class.border-gray-400]="(primaryColor$ | async) === theme.value">
+        </button>
+      </div>
+    </div>
+
+    <!-- Font Size -->
+    <div class="mt-4">
+      <h4 class="text-sm font-medium text-gray-700 mb-2">Font Size</h4>
+      <div class="flex space-x-2">
+        <button *ngFor="let size of fontSizeOptions"
+                (click)="setFontSize(size)"
+                class="px-3 py-1 rounded-md text-sm"
+                [class.bg-indigo-500]="selectedFontSize === size"
+                [class.text-white]="selectedFontSize === size"
+                [class.bg-gray-100]="selectedFontSize !== size">
+          {{size | titlecase}}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

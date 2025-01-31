@@ -12,13 +12,13 @@
       
       <!-- Language Toggle and Settings Buttons -->
       <div class="flex items-center space-x-4">
-        <button (click)="toggleLanguage()" 
+        <!-- <button (click)="toggleLanguage()" 
                 class="px-4 py-2 rounded-full bg-indigo-500 text-white hover:bg-indigo-600 
                        transition-colors duration-200 flex items-center space-x-2 text-sm">
           <span>{{ getLanguageText() }}</span>
           <span class="material-icons text-lg">translate</span>
-        </button>
-        <button class="p-2 hover:bg-gray-100 rounded-full transition-colors duration-200">
+        </button> -->
+        <button (click)="toggleSettings()" class="p-2 hover:bg-gray-100 rounded-full transition-colors duration-200">
           <span class="material-icons text-gray-600">settings</span>
         </button>
       </div>
@@ -27,11 +27,11 @@
     <!-- Mobile Menu Button -->
     <div class="md:hidden flex items-center space-x-4">
       <!-- Language Toggle Button Mobile -->
-      <button (click)="toggleLanguage()" 
+      <!-- <button (click)="toggleLanguage()" 
               class="px-3 py-1.5 rounded-full bg-indigo-500 text-white text-sm hover:bg-indigo-600 
                      transition-colors duration-200">
         {{ getLanguageText() }}
-      </button>
+      </button> -->
       
       <!-- Existing Mobile Menu Button -->
       <button class="p-2" (click)="toggleMenu()">
@@ -153,13 +153,28 @@
     {{ 'nav.contact' | translate }}
   </a>
   <!-- Settings Link -->
-  <a
+  <a (click)="toggleSettings(true)"
      class="flex items-center px-6 py-3 text-gray-600 hover:bg-gray-50 transition-colors duration-200"
-     (click)="toggleMenu()">
+     style="cursor: pointer">
     <span class="material-icons mr-3">settings</span>
     {{ 'nav.settings' | translate }}
   </a>
 </ng-template>
+
+<!-- Add Settings Sidebar right before the Spacer div -->
+<div *ngIf="showSettings" class="fixed inset-0 bg-black bg-opacity-50 z-[60]" (click)="toggleSettings()"></div>
+<div class="fixed top-0 right-0 h-full w-80 bg-white shadow-lg transform transition-transform duration-300 ease-in-out z-[61]"
+     [ngClass]="showSettings ? 'translate-x-0' : 'translate-x-full'">
+  <div class="flex items-center justify-between p-4 border-b">
+    <h2 class="text-xl font-semibold text-gray-800">{{ 'nav.settings' | translate }}</h2>
+    <button class="p-2" (click)="toggleSettings()">
+      <span class="material-icons">close</span>
+    </button>
+  </div>
+  <div class="p-4">
+    <app-settings></app-settings>
+  </div>
+</div>
 
 <!-- Spacer -->
 <div class="h-20"></div>
